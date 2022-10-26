@@ -30,13 +30,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	fmt.Fprintf(w, "*** Headers ***\n")
+	fmt.Printf( "*** Headers ***\n")
 	for name, headers := range r.Header {
 		for _, h := range headers {
 			fmt.Fprintf(w, "%v: %v\n", name, h)
+      fmt.Printf("%v: %v\n", name, h)
 		}
 	}
 	body, err := ioutil.ReadAll(r.Body)
-	if err == nil {
+	if err == nil && len(body)>0 {
+		fmt.Println("*** Body ***")
 		fmt.Println(string(body))
 	}
 }
